@@ -13,6 +13,12 @@ document.getElementById('btn-add-money')
 
     const pinNumberInput = document.getElementById('input-pin-number').value;
 
+    // Add money input validation
+    if (isNaN(addMoneyInput)) {
+      alert('Failed to add money');
+      return;
+    }
+
     // Step-3 Verify the pin number
     if (pinNumberInput === '1234') {
       console.log('Adding Money to your account.');
@@ -28,12 +34,21 @@ document.getElementById('btn-add-money')
 
       //Step-6 Update the account balance
       document.getElementById('account-balance').innerText = newBalance;
+
+      // Add to transaction history
+      const p = document.createElement('p');
+      p.innerText = `Add Money : ${addMoneyNumber} Tk. New Balance is : ${newBalance}`;
+      
+      // Add to transaction history
+      document.getElementById('transaction-container').appendChild(p);
     }
     else {
       alert('Faild to Add Money! Please try again.');
     }
 
   });
+
+
 
 
 
@@ -52,6 +67,12 @@ document.getElementById('btn-cash-out')
     //Get the pin number provided by the user
     const pinNumberInput2 = document.getElementById('cash-out-pin').value;
 
+    // Cash Out input validation
+    if (isNaN(cashOutInput)) {
+      alert('Failed to Cash Out');
+      return;
+    }
+
     // Step-3 Verify the pin number
     if (pinNumberInput2 === '1234') {
       console.log('Cash out successful');
@@ -65,30 +86,57 @@ document.getElementById('btn-cash-out')
       const newBalance = balanceNumber - cashOutNumber;
       console.log(newBalance);
 
-      //Step-6 Update the account balance
-      document.getElementById('account-balance').innerText = newBalance;
+      // cash out Validation
+      if (cashOutNumber > balance) {
+        alert('You do not have enough money to Cash Out');
+        return;
+      }
+        //Step-6 Update the account balance
+        document.getElementById('account-balance').innerText = newBalance;
 
-    }
-    else {
+      // Add to transaction history
+      const p = document.createElement('p');
+      p.innerText = `Cash Out : ${cashOutNumber} Tk. New Balance is : ${newBalance}`;
+
+      // Add to transaction history
+      document.getElementById('transaction-container').appendChild(p);
+    } else {
       alert('Faild to Cash Out! Please try again.');
     }
-
   });
 
 
 
 // Toggle feature
   
-document.getElementById('toggle-btn-cashOut').addEventListener('click', function () { 
-  document.getElementById('cash-out-form').classList.remove('hidden');
-  //Hide the add money form
-  document.getElementById('add-money-form').classList.add('hidden');
-});
+// document.getElementById('toggle-btn-cashOut').addEventListener('click', function () { 
+//   document.getElementById('cash-out-form').classList.remove('hidden');
+//   //Hide the add money form
+//   document.getElementById('add-money-form').classList.add('hidden');
+// });
 
 
-document.getElementById('toggle-btn-addMoney').addEventListener('click', function () {
-  document.getElementById('add-money-form').classList.remove('hidden');
+// document.getElementById('toggle-btn-addMoney').addEventListener('click', function () {
+//   document.getElementById('add-money-form').classList.remove('hidden');
 
-  // Hide the cash out form
-  document.getElementById('cash-out-form').classList.add('hidden');
-});
+//   // Hide the cash out form
+//   document.getElementById('cash-out-form').classList.add('hidden');
+// });
+
+
+document.getElementById('show-addMoney-form')
+  .addEventListener('click', function () {
+    showSectionById('add-money-form');
+  });
+
+
+document.getElementById('show-cashOut-form')
+  .addEventListener('click', function () {
+    showSectionById('cash-out-form');
+  });
+
+
+document.getElementById('show-transaction-form')
+  .addEventListener('click', function () {
+    showSectionById('transaction-section');
+  });

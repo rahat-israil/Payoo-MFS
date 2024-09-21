@@ -24,12 +24,17 @@
               <div class="divider divider-primary"></div>
               <!-- User Action Button -->
                <div class="flex justify-evenly w-full">
-                  <button id="toggle-btn-addMoney" class="btn btn-lg">Add Money</button>
-                  <button id="toggle-btn-cashOut" class="btn btn-lg">Cash Out</button>
+                  <button id="show-addMoney-form" class="btn btn-sm hover:bg-blue-800 hover:text-white">Add Money</button>
+
+                  <button id="show-cashOut-form" class="btn btn-sm hover:bg-blue-800 hover:text-white">Cash Out</button>
+                  
+                  <button id="show-transaction-form" class="btn btn-sm hover:bg-blue-800 hover:text-white">Transaction</button>
                </div>
+
+
                 <div class="divider divider-primary"></div>
                <!-- Add Money Form  -->
-                <div id="add-money-form" class="card bg-base-100 w-[90%] max-w-sm shrink-0 shadow-2xl">
+                <div id="add-money-form" class="  card bg-base-100 w-[90%] max-w-sm shrink-0 shadow-2xl">
                   <form class="card-body">
                     <div class="form-control">
                       <label class="label">
@@ -71,12 +76,21 @@
                   </form>
                 </div>
 
+              <!-- Transaction Details -->
+               <div id="transaction-section" class="hidden">
+                  <h2 class="text-3xl">Transaction History</h2>
+                  <div class="divider"></div>
+                  <div id="transaction-container" class="mt-5 space-y-3">
+
+                  </div>
+               </div>
+
             </div>
           </div>
         </div>
     </main>
 
-
+    <script src="js/function.js"></script>
     <script src="js/home.js"></script>
 </body>
 </html>
